@@ -14,21 +14,34 @@ themeToggleButton.addEventListener("click", () => {
 });
 
 // ====================
-// Project Data
+// Project Data Array
 // ====================
 
 const projects = [
   {
-    title: "Sample Project One",
-    description: "A simple project built using HTML and CSS.",
-    details: "This project focuses on semantic HTML and responsive CSS layout."
+    title: "Personal Portfolio Website",
+    description: "My personal website showcasing my projects and skills.",
+    tech: "HTML, CSS, JavaScript",
+    status: "Completed",
+    details:
+      "This portfolio features responsive layout, dark mode toggle, dynamic project rendering, and modal-based project details. Built to practice core frontend fundamentals."
   },
+
   {
-    title: "Sample Project Two",
-    description: "A JavaScript-based interactive feature.",
-    details: "This project demonstrates DOM manipulation and event handling."
-  }
+  title: "To-Do List Application",
+  description: "A task management app with persistent storage.",
+  tech: "HTML, CSS, JavaScript, localStorage",
+  status: "Completed",
+  details:
+    "This application allows users to add tasks, mark them as completed, clear all tasks, and persist data using localStorage.",
+  link: "https://uzumaki149.github.io/to-do-app/"
+}
+
 ];
+
+const projectsTitle = document.getElementById("projectsTitle");
+projectsTitle.textContent = `Projects (${projects.length})`;
+
 
 // ====================
 // Project Rendering
@@ -64,7 +77,28 @@ projects.forEach((project) => {
 
   projectCard.appendChild(projectTitle);
   projectCard.appendChild(projectDescription);
+  const tech = document.createElement("p");
+tech.textContent = "Tech: " + project.tech;
+
+const status = document.createElement("p");
+status.textContent = "Status: " + project.status;
+
+projectCard.appendChild(tech);
+projectCard.appendChild(status);
+
   projectCard.appendChild(viewButton);
+
+  if (project.link) {
+  const liveLink = document.createElement("a");
+  liveLink.href = project.link;
+  liveLink.textContent = "Live Demo";
+  liveLink.target = "_blank";
+  liveLink.style.display = "inline-block";
+  liveLink.style.marginTop = "8px";
+
+  projectCard.appendChild(liveLink);
+}
+
   projectList.appendChild(projectCard);
 });
 
